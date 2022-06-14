@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <meta charset="utf-8">
+  <title></title>
+  <style media="screen">
+  body{margin:0;height:100vh}
+    .container{display:flex;}
+    .item1{flex-grow:2;
+      background-image: url("bgBlue.jpg");
+      }
+    .item2{flex-grow:4;
+      background-color: green;
+    }
+    .item3{flex-grow:3;
+      background-color:red;
+    }
+
+    #buildings_sell{
+      display:none;
+    }
+    img{width:150px}
+  </style>
+</head>
+<body>
+  <script type="text/javascript">
+    inu_count=0;
+    neko_count=0;
+    let ls_count=localStorage.getItem("ls_count");
+    if(ls_count){
+      count=parseInt(ls_count);
+    }else{
+      count=0;
+    }
+    setInterval(save_action,1000);
+    function save_action(){
+      localStorage.setItem("ls_count",count);
+    }
+    setInterval(screen_update,10);
+    function screen_update(){
+      span=document.getElementById('cookie_count');
+      span.textContent=count;
+    }
+    document.cookie="cookie_count=100";
+    function cookie_click(){
+      var cookie_img=document.getElementById('cookie_img');
+      cookie_img.classList.remove('animate__animated','animate__bounce');
+      void cookie_img.offsetWidth;
+      cookie_img.classList.add('animate__animated','animate__bounce');
+
+      span=document.getElementById('cookie_count');
+      count++;
+      span.textContent=count;
+    }
+    function inu() {
+      if (count>=100) {
+        count-=100;
+        inu_count++
+      setInterval(autocountup,1000,1);
+      }
+    }
+    function sell_inu(){
+           let r_id=event_ids.pop();
+           clearInterval(r_id);
+
+         }
+    function neko() {
+      if (count>=1000) {
+        count-=1000;
+        neko_count++
+      setInterval(autocountup,1000,18);
+      }
+    }
+    function sell_neko(){
+           let r_id=event_ids.pop();
+           clearInterval(r_id);
+
+         }
+    function buildSwitch(){
+      let buy_element =document.getElementById('buildings_buy');
+      let sell_element =document.getElementById('buildings_sell');
+
+      if(buy_element.style.display!="none"){
+        buy_element.style.display="none"
+        sell_element.style.display="block"
+      }else{
+        buy_element.style.display="block"
+        sell_element.style.display="none"
+      }
+
+    }
+    function autocountup(num){
+      count=count+num;
+
+    }
+
+  </script>
+  <div class="container">
+  <div class="item1">
+    <p class="animate__animated animate__bounce">
+      <span id="cookie_count">0</span>枚
+    </p>
+    <img id="cookie_img" onclick="cookie_click()" src="くっきー.jpg" alt="">
+  </div>
+  <div class="item2">
+    製作途中
+  </div>
+  <div class="item3">
+    <div id="buildings_buy">
+    <span onclick="buildSwitch()">購入</span>
+    <ul>
+      <li onclick="inu()">いぬ</li>
+      <li onclick="neko()">ねこ</li>
+      <li>とら</li>
+    </ul>
+  </div>
+     <div id="buildings_sell">
+       <span onclick="buildSwitch()">売却</span>
+       <ul>
+         <li onclick="sell_inu()">いぬ</li>
+         <li onclick="sell_neko()">ねこ</li>
+         <li>とら</li>
+       </ul>
+     </div>
+  </div>
+  </div>
+
+
+</body>
+</html>

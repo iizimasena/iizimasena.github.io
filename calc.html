@@ -6,10 +6,23 @@
     <title></title>
   </head>
   <body>
-    <script type="text/javascript">
-      var prompt_a=prompt("名前を入れてください");
-      alert(prompt_a);
+    <input id="int1" type="text" name="" value=
+    <input id="int2" type="text" name="" value=
+    <button onclick="keisan()" type="button" name="" value
+    計算結果
+    <p id="result"></p>
 
+    <script type="text/javascript">
+
+      function keisan(){
+          var element1=document.getElementById('int1');
+          var element1=document.getElementById('int2');
+
+          var result=parseInt(element1.value)+parseInt(element2.value);
+
+          var result_text=document.getElementById('result');
+          result_text.textContent=result;
+    }
     </script>
   </body>
 </html>
